@@ -1,0 +1,17 @@
+{{#each stages as |stage|}}
+<ul class="list-group-flush list-unstyled border Misc {{stage.name}}" data-stage="{{@index}}">
+<li class="list-group-item nav-header bg-dark text-light fixed"><h5>{{stage.name}}</h5></li>
+    {{#methods}}
+        {{#with (lookup ../../methods .) as |method|}}
+        <li class="list-group-item{{#if method.fixed}} fixed{{/if}}{{#if method.used}} used{{/if}}" data-target="{{method.stage}}" data-key="{{method.key}}" data-src="{{method.src}}">
+            {{#unless isCore}}{{method.src}}.{{/unless}}{{method.name}}
+            {{#isRemoveable ../../..}}
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{/isRemoveable}}
+        </li>
+        {{/with}}
+    {{/methods}}
+</ul>
+{{/each}}

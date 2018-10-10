@@ -1,0 +1,7 @@
+*.pyc
+**/gen/*
+**/.webassets-cache
+__pycache__/
+config/build
+
+instance/

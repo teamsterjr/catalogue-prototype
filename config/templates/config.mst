@@ -1,0 +1,7 @@
+<pre>
+config:
+    {{#each libraries}}
+    {{#unless @index}}libraries:{{/unless}}
+        - {{@key}}
+    {{/each}}
+</pre>

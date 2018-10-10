@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pipeline Catalogue</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% assets "css_all" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+
+<body>
+
+    <div class="d-flex bg-secondary navbar-dark w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand text-black-50">Pipeline Catalogue</h3>
+            </div>
+        </header>
+    </div>
+
+    <main role="main">
+        <div class="container py-5">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+    <script type="x-tmpl-mustache" id='pipelinetemplate'>{{ include_raw('pipeline.mst') }}</script>
+    <script type="x-tmpl-mustache" id='methodtemplate'>{{ include_raw('method.mst') }}</script>
+    <script type="x-tmpl-mustache" id='configtemplate'>{{ include_raw('config.mst') }}</script>
+    {% assets "js_all" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+</body>
+
+</html>

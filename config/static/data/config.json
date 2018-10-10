@@ -1,0 +1,37 @@
+{
+  "libraries": [
+    {
+      "manifest": "/manifest.json",
+      "repo":"/static/data/examples/core",
+      "repo_example": "<github path>",
+      "docpath": "/docs"
+    },
+    {
+      "manifest": "/manifest.json",
+      "repo":"/static/data/examples/node",
+      "docpath": "/docs"
+    }
+  ],
+  "stages": [
+    { "name": "Initialize", "noUnstash": true,
+        "defaultMethods": [
+            {"method":"initialize","src":"AliceCore","fixed":true}
+        ]
+    },
+    { "name": "Build" },
+    { "name": "Test" },
+    { "name": "Package" },
+    { "name": "Deploy" },
+    { "name": "E2E" },
+    { "name": "Release" },
+    { "name": "Misc", "notTarget":true }
+  ],
+  "default_state": {
+    "options": [
+      "ansiColor('xterm')",
+      "skipDefaultCheckout()",
+      "buildDiscarder(logRotator(numToKeepStr: '5'))"
+    ],
+    "post": ["cleanWs()"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "key": "AliceCore",
+  "isCore":true,
+  "name": "Alice's core library",
+  "description": "A Useful selection of handy dandy utility functions",
+  "methods": {
+    "initialize": {
+      "description": "initialize your pipeline - check out code, import config",
+      "required": "always",
+      "usage": "",
+      "stage": "Initialize",
+      "defaultArgs": "'config/Jenkinsfile.yaml'"
+    },
+    "initializegradle": {
+      "description": "initialize your pipeline - check out code, import config",
+      "usage": "",
+      "appliesto": "gradle",
+      "stage": "Initialize"
+    },
+    "Notify": {
+      "description": "Send an email notification",
+      "usage": ""
+    }
+  }
+}

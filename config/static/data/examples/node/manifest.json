@@ -1,0 +1,19 @@
+{
+  "key": "BobNode",
+  "name": "Bob's node library",
+  "description": "A Useful selection of handy dandy node functions",
+  "methods": {
+    "buildNode": {
+      "description": "installs node dependencies",
+      "usage": "",
+      "appliesto": "node",
+      "stage": "Build"
+    },
+    "testNode": {
+      "description": "Runs unit tests against your code",
+      "usage": "",
+      "appliesto": "node",
+      "stage": "Test"
+    }
+  }
+}

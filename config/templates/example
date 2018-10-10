@@ -1,0 +1,46 @@
+@Library('conduit')_
+
+pipeline {
+  agent any
+  options {
+      ansiColor('xterm')
+      skipDefaultCheckout()
+      buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  stages {
+    stage('Initialise') {
+      steps {
+        pipelineConfig = initialize 'config/Jenkinsfile.yaml'
+      }
+    }
+
+    stage('Build') { steps { buildNode() } }
+
+    stage('Tests') {
+      stages {
+        stage('unit') { steps { } }
+        stage('static') { steps { } }
+      }
+    }
+
+    stage('Package') { steps {} }
+
+    stage('Deploy') { steps { } }
+
+    stage('E2E') { steps { } }
+
+    stage('Release') {
+      stages {
+          stage('Publish') { steps { } }
+          stage('Promote') { steps { } }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+          cleanWs()
+      }
+    }
+  }
+}

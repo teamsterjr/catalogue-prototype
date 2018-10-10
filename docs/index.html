@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pipeline Catalogue</title>
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    
+    <link rel="stylesheet" href="/static/gen/css/packed.css?0a57a1a9">
+    
+</head>
+
+<body>
+
+    <div class="d-flex bg-secondary navbar-dark w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand text-black-50">Pipeline Catalogue</h3>
+            </div>
+        </header>
+    </div>
+
+    <main role="main">
+        <div class="container py-5">
+            
+
+<div id="content" class="row justify-content-between">
+    <div id="methods" class="methods"></div>
+    <div id="pipeline-list" class="col-4 methods"></div>
+    <div class="col-5" id="accordion">
+        <div class="card">
+            <div class="card-header bg-dark text-light"><button class="text-light btn btn-link" data-toggle="collapse" id="collapsePipeline" aria-expanded="true" data-target="#pipelineHolder">Pipeline</button></div>
+                <div class="border collapse show" id="pipelineHolder" aria-labelledby="collapsePipeline" data-parent="#accordion">
+                    <div class="card-body" id="pipeline"> </div>
+                </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-dark text-light"><button class="collapsed text-light btn btn-link" data-toggle="collapse" id="collapseConfig" aria-expanded="false" data-target="#configHolder">config/Jenkinsfile.yaml</button></div>
+                <div class="border collapse" id="configHolder" aria-labelledby="collapseConfig" data-parent="#accordion">
+                    <div class="card-body" id="config"> </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+        </div>
+    </main>
+    <script type="x-tmpl-mustache" id='pipelinetemplate'><pre>
+@Library('conduit')_
+
+pipeline {
+  agent any
+  options {
+    {{#options}}
+    {{.}}
+    {{/options}}
+  }
+  stages {
+    {{#stages}}
+    {{#if methods}}
+    stage('{{ name }}') {
+      steps {
+        {{#unless noUnstash}}
+        unstash 'src'
+        {{/unless}}
+        {{#methods}}
+        {{#with (lookup ../../methods .) as |method|}}
+        {{#unless isCore}}{{method.src}}.{{/unless}}{{method.name}} {{method.defaultArgs}}
+        {{/with}}
+        {{/methods}}
+      }
+    }
+    {{/if}}
+    {{/stages}}
+  }
+  {{#if post}}
+  post {
+    always {
+      script {
+      {{#post}}
+          {{.}}
+      {{/post}}
+      }
+    }
+  }
+  {{/if}}
+}
+</pre></script>
+    <script type="x-tmpl-mustache" id='methodtemplate'>{{#each stages as |stage|}}
+<ul class="list-group-flush list-unstyled border Misc {{stage.name}}" data-stage="{{@index}}">
+<li class="list-group-item nav-header bg-dark text-light fixed"><h5>{{stage.name}}</h5></li>
+    {{#methods}}
+        {{#with (lookup ../../methods .) as |method|}}
+        <li class="list-group-item{{#if method.fixed}} fixed{{/if}}{{#if method.used}} used{{/if}}" data-target="{{method.stage}}" data-key="{{method.key}}" data-src="{{method.src}}">
+            {{#unless isCore}}{{method.src}}.{{/unless}}{{method.name}}
+            {{#isRemoveable ../../..}}
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{/isRemoveable}}
+        </li>
+        {{/with}}
+    {{/methods}}
+</ul>
+{{/each}}</script>
+    <script type="x-tmpl-mustache" id='configtemplate'><pre>
+config:
+    {{#each libraries}}
+    {{#unless @index}}libraries:{{/unless}}
+        - {{@key}}
+    {{/each}}
+</pre></script>
+    
+    <script type="text/javascript" src="/static/gen/js/packed.js?687cecb1"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+.fixed, #methods .used {
+    color:#6c757d;opacity:1
+}
+
+.active-target {
+    border-color: yellow;
+    background-color: yellow;
+    padding-bottom: 10px;
+}
+
+#content ul {
+    margin-bottom: 0px;
+}
