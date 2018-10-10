@@ -1,0 +1,19 @@
+{
+  "pipelines": [
+    {
+      "name": "Al's Node methods",
+      "manifest": "/data/node.json",
+      "repo": "github/pipelines/node.git"
+    },
+    {
+      "name": "Bob's Java methods",
+      "manifest": "/data/java.json",
+      "repo": "github/pipelines/java.git"
+    },
+    {
+      "name": "Carol's core methods",
+      "manifest": "/data/core.json",
+      "repo": "github/pipelines/core.git"
+    }
+  ]
+}

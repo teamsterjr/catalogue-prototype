@@ -1,0 +1,13 @@
+{
+    "stages":{
+        "initialize": {
+            "initialize":{
+                "name":"initialize",
+                "description": "initialize your pipeline - check out code, import config",
+                "required": true,
+                "usage": ""
+            }
+        }
+    },
+    "description": "A Useful selection of handy dandy utility functions"
+}
