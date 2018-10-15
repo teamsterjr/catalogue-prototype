@@ -7,7 +7,7 @@ templateMethod = Handlebars.compile($("#methodtemplate").html());
 templateConfig = Handlebars.compile($("#configtemplate").html());
 
 $(document).ready(function() {
-  $.get("/static/data/config.json", function(data) {
+  $.get("static/data/config.json", function(data) {
     config.methods = {};
     var stageMethods = {};
     config.pipeline = {libraries:{},...data.default_state};
@@ -84,6 +84,11 @@ function render() {
 function renderConfig() {
   rendered = templateConfig(config.pipeline);
   $("#config" ).html(rendered);
+  createString =
+    '<a download="Jenkinsfile.yaml" href="data:application/octect-stream,' +
+    encodeURI($("#config").text()) +
+    '">Download</a>';
+  $(createString).appendTo("#config");
 
 }
 
