@@ -1,6 +1,6 @@
 import os
 from invoke import task
-from config import create_app
+from catalogue import create_app
 from flask_frozen import Freezer
 from flask import Flask
 

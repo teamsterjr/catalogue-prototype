@@ -7,7 +7,6 @@ templateMethod = Handlebars.compile($("#methodtemplate").html());
 templateConfig = Handlebars.compile($("#configtemplate").html());
 
 $(document).ready(function() {
-  $.get("static/data/config.json", function(data) {
     config.methods = {};
     var stageMethods = {};
     config.pipeline = {libraries:{},...data.default_state};
@@ -60,7 +59,6 @@ $(document).ready(function() {
       });
       render();
     });
-  }); // fetch config
 }); // doc.ready
 
 Handlebars.registerHelper("isRemoveable", function(context, options) {

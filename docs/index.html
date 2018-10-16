@@ -24,12 +24,20 @@
             
 
 <div id="content" class="row justify-content-between">
+    <div class="col-3">
+    <h5>1: Drag from here</h5>
     <div id="methods" class="methods"></div>
-    <div id="pipeline-list" class="col-4 methods"></div>
-    <div class="col-5" id="accordion">
+    </div>
+    <div class="col-3">
+    <h5>2: To here</h5>
+    <div id="pipeline-list" class="methods"></div>
+    </div>
+    <div class="col-5">
+        <h5>3: Expand these</h5>
+        <div id="accordion">
         <div class="card">
-            <div class="card-header bg-dark text-light"><button class="text-light btn btn-link" data-toggle="collapse" id="collapsePipeline" aria-expanded="true" data-target="#pipelineHolder">Pipeline</button></div>
-                <div class="border collapse show" id="pipelineHolder" aria-labelledby="collapsePipeline" data-parent="#accordion">
+            <div class="card-header bg-dark text-light"><button class="text-light btn btn-link collasped" data-toggle="collapse" id="collapsePipeline" aria-expanded="false" data-target="#pipelineHolder">Pipeline</button></div>
+                <div class="border collapse" id="pipelineHolder" aria-labelledby="collapsePipeline" data-parent="#accordion">
                     <div class="card-body" id="pipeline"> </div>
                 </div>
         </div>
@@ -40,12 +48,56 @@
                 </div>
         </div>
     </div>
+    </div>
 
 </div>
 
 
         </div>
     </main>
+    <script type='application/javascript'>
+        var data = {
+  "stages": [
+    {
+      "name": "Initialize",
+      "noUnstash": true,
+      "defaultMethods": [
+        { "method": "initialize", "src": "AliceCore", "fixed": true }
+      ]
+    },
+    { "name": "Build" },
+    { "name": "Test" },
+    { "name": "Package" },
+    { "name": "Deploy" },
+    { "name": "E2E" },
+    { "name": "Release" },
+    { "name": "Misc", "notTarget": true }
+  ],
+  "default_state": {
+    "options": [
+      "ansiColor('xterm')",
+      "skipDefaultCheckout()",
+      "buildDiscarder(logRotator(numToKeepStr: '5'))"
+    ],
+    "post": ["cleanWs()"]
+  }
+}
+;
+        data.libraries=[
+  {
+    "manifest": "/manifest.json",
+    "repo": "static/data/examples/core",
+    "repo_example": "<github path>",
+    "docpath": "/docs"
+  },
+  {
+    "manifest": "/manifest.json",
+    "repo": "static/data/examples/node",
+    "docpath": "/docs"
+  }
+]
+
+    </script>
     <script type="x-tmpl-mustache" id='pipelinetemplate'><pre>
 @Library('conduit')_
 
@@ -89,7 +141,7 @@ pipeline {
 </pre></script>
     <script type="x-tmpl-mustache" id='methodtemplate'>{{#each stages as |stage|}}
 <ul class="list-group-flush list-unstyled border Misc {{stage.name}}" data-stage="{{@index}}">
-<li class="list-group-item nav-header bg-dark text-light fixed"><h5>{{stage.name}}</h5></li>
+<li class="list-group-item bg-dark text-light fixed h-25">{{stage.name}}</li>
     {{#methods}}
         {{#with (lookup ../../methods .) as |method|}}
         <li class="list-group-item{{#if method.fixed}} fixed{{/if}}{{#if method.used}} used{{/if}}" data-target="{{method.stage}}" data-key="{{method.key}}" data-src="{{method.src}}">
@@ -112,7 +164,7 @@ config:
     {{/each}}
 </pre></script>
     
-    <script type="text/javascript" src="static/gen/js/packed.js?e58c3a62"></script>
+    <script type="text/javascript" src="static/gen/js/packed.js?0d9c5b4b"></script>
     
 </body>
 

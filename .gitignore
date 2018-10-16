@@ -1,5 +1,5 @@
 *.pyc
-config/static/gen/**/*
+catalogue/static/gen/**/*
 **/.webassets-cache
 __pycache__/
 config/build
