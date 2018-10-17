@@ -2,6 +2,7 @@
 catalogue/static/gen/**/*
 catalogue/static/js/setup.js
 **/.webassets-cache
+packed.*
 __pycache__/
 config/build
 

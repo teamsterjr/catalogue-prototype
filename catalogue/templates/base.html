@@ -11,20 +11,11 @@
 
 <body>
 
-    <div id="header" class="d-flex horse navbar-dark w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div class="inner">
-                <h3 class="masthead-brand text-light">Pipeline Catalogue</h3>
-            </div>
-        </header>
+    <h3 class="horse">Pipeline Catalogue</h3>
+    <div class="container py-5">
+        {% block content %}
+        {% endblock content %}
     </div>
-
-    <main role="main">
-        <div class="container py-5">
-            {% block content %}
-            {% endblock content %}
-        </div>
-    </main>
     {% assets "js_all" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}

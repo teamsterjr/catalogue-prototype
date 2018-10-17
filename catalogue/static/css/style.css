@@ -13,6 +13,11 @@
 }
 
 .horse {
-    background-color: #006a4d
-
+    background-color: #006a4d;
+    width: 100%;
+    padding: 10px;
+    color:white;
+}
+.btn {
+    color:white
 }

@@ -1,14 +1,12 @@
 {{#each stages as |stage|}}
-<ul class='list-group-flush list-unstyled border Misc {{stage.name}}' data-stage='{{@index}}'>
-<li class='list-group-item bg-dark text-light fixed h-25'>{{stage.name}}</li>
+<ul class='list-unstyled border Misc {{stage.name}}' data-stage='{{@index}}'>
+<li class='list-group-item bg-dark text-light fixed'>{{stage.name}}</li>
     {{#methods}}
         {{#with (lookup ../../methods .) as |method|}}
         <li class='list-group-item{{#if method.fixed}} fixed{{/if}}{{#if method.used}} used{{/if}}' data-target='{{method.stage}}' data-key='{{method.key}}' data-src='{{method.src}}'>
             {{#unless isCore}}{{method.src}}.{{/unless}}{{method.name}}
             {{#isRemoveable ../../..}}
-            <button type='button' class='close' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-            </button>
+            <button class='close'>&times;</button>
             {{/isRemoveable}}
         </li>
         {{/with}}
