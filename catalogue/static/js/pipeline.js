@@ -1,10 +1,9 @@
 var renderPipeline;
 var config = { libraries: {}, stages: [] };
 var deferreds = [];
-
-templatePipeline = Handlebars.compile($("#pipelinetemplate").html());
-templateMethod = Handlebars.compile($("#methodtemplate").html());
-templateConfig = Handlebars.compile($("#configtemplate").html());
+templatePipeline = Handlebars.compile(templatePipeline);
+templateMethod = Handlebars.compile(templateMethod);
+templateConfig = Handlebars.compile(templateConfig);
 
 $(document).ready(function() {
     config.methods = {};

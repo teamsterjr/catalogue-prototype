@@ -11,10 +11,10 @@
 
 <body>
 
-    <div class="d-flex bg-secondary navbar-dark w-100 h-100 p-3 mx-auto flex-column">
+    <div id="header" class="d-flex horse navbar-dark w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <div class="inner">
-                <h3 class="masthead-brand text-black-50">Pipeline Catalogue</h3>
+                <h3 class="masthead-brand text-light">Pipeline Catalogue</h3>
             </div>
         </header>
     </div>
@@ -25,13 +25,6 @@
             {% endblock content %}
         </div>
     </main>
-    <script type='application/javascript'>
-        var data = {{include_raw('../config/config.json')}};
-        data.libraries={{include_raw('../config/libraries.json')}}
-    </script>
-    <script type="x-tmpl-mustache" id='pipelinetemplate'>{{ include_raw('pipeline.mst') }}</script>
-    <script type="x-tmpl-mustache" id='methodtemplate'>{{ include_raw('method.mst') }}</script>
-    <script type="x-tmpl-mustache" id='configtemplate'>{{ include_raw('config.mst') }}</script>
     {% assets "js_all" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}

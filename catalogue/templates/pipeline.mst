@@ -1,4 +1,3 @@
-<pre>
 @Library('conduit')_
 
 pipeline {
@@ -38,4 +37,3 @@ pipeline {
   }
   {{/if}}
 }
-</pre>
