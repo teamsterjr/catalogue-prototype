@@ -1,3 +1,4 @@
+.venv
 *.pyc
 catalogue/static/gen/**/*
 catalogue/static/js/setup.js

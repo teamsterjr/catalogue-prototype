@@ -3,19 +3,21 @@ from invoke import task
 from catalogue import create_app
 from flask_frozen import Freezer
 from flask import Flask, render_template
+from flask_htmlmin import HTMLMIN
 import http.server
 import socketserver
 
 @task
 def build(c):
     app = create_app()
+    HTMLMIN(app)
+    app.config['MINIFY_PAGE'] = True
     app.config['FREEZER_RELATIVE_URLS']=True
     app.config['FREEZER_REMOVE_EXTRA_FILES']=True
     app.config['FREEZER_DESTINATION']="../docs"
     app.config['FREEZER_STATIC_IGNORE']=['js/*','css/*','.webassets-cache/*']
     freezer = Freezer(app)
     freezer.freeze()
-    #c.run('rm -rf docs/static/js docs/static/css docs/static/.webassets-cache')
 
 @task(pre=[build])
 def teststatic(c):

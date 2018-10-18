@@ -1,0 +1,13 @@
+Click==7.0
+Flask==1.0.2
+Flask-Assets==0.12
+Flask-HTMLmin==1.4.0
+Frozen-Flask==0.15
+htmlmin==0.1.12
+invoke==1.2.0
+itsdangerous==0.24
+Jinja2==2.10
+jsmin==2.2.2
+MarkupSafe==1.0
+webassets==0.12.1
+Werkzeug==0.14.1

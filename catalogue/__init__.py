@@ -5,7 +5,6 @@ import json
 from flask import Flask, render_template
 from jinja2 import Markup
 from flask_assets import (Environment, Bundle)
-from htmlmin.minify import html_minify
 
 
 def create_app(test_config=None):
@@ -32,7 +31,7 @@ def create_app(test_config=None):
 
     @app.route('/')
     def index():
-        return html_minify(render_template('index.html'))
+        return render_template('index.html')
 
 
     if app.config['DEBUG']:
